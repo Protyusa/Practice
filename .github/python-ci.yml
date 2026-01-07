@@ -1,0 +1,23 @@
+name: CI - Python App
+
+on:
+  workflow-dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Compile (syntax check)
+        run: python -m py_compile app.py
+
+      - name: Run application
+        run: python app.py
